@@ -61,6 +61,8 @@ if(!file.exists(fn)) {
   system.time(
     bfm_evi <- calc(evi, fun = getbfm, filename = fn)
     )
+  ##     user   system  elapsed (ubuntu - single core)
+  ##   1554.033    1.856 1561.021 
 } else {
   bfm_evi <- brick(fn)
 }
