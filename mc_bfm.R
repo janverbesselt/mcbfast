@@ -15,7 +15,8 @@ source("functions.R")
 
 ## load data
 if (!file.exists(fn <- "data/evi_au.grd")) {
-  unzip(files="data/evi_au.zip")
+  unzip(zipfile="data/evi_au.zip", exdir = "data/.")
+  evi <- brick(fn)
 } else {
   evi <- brick(fn) ## monthly time series
 }
@@ -54,11 +55,16 @@ if (FALSE) {
 ## no parallel processing
 ## to be added the calc based alternative to deal with NA's and limit processing to specific areas
 ## (4) analyse GIMMS with bfast01 and classify
+
 fn <- "data/bfm_mod13c2.grd"
 if(!file.exists(fn)) {
-  bfm_evi <- calc(evi, fun = getbfm, filename = fn)
+  system.time(
+    bfm_evi <- calc(evi, fun = getbfm, filename = fn)
+    )
 } else {
   bfm_evi <- brick(fn)
 }
 
-
+if (FALSE) {
+  plot(bfm_evi, 2)  ## magnitude of change
+}
