@@ -26,8 +26,9 @@ if (FALSE) {
   tsevi <- ts(as.numeric(evi[cellFromXY(evi, c(149.9479,-24.88017))]/10000), 
               start=c(2000,2), freq=12)
   plot(tsevi)
-  fit <- bfastmonitor(tsevi, start = c(2010, 1))
-  plot(fit)
+  bfm <- bfastmonitor(tsevi, start = c(2010, 1))
+  plot(bfm)
+  c(bfm$breakpoint, bfm$magnitude)
 }
 
 ## does not work yet --> as we need to build in dealing with NA's in the time series
@@ -51,6 +52,13 @@ if (FALSE) {
 }
 
 ## no parallel processing
-## to be added the calc based alternative
-?bfastmonitor
+## to be added the calc based alternative to deal with NA's and limit processing to specific areas
+## (4) analyse GIMMS with bfast01 and classify
+fn <- "data/bfm_mod13c2.grd"
+if(!file.exists(fn)) {
+  bfm_evi <- calc(evi, fun = getbfm, filename = fn)
+} else {
+  bfm_evi <- brick(fn)
+}
+
 

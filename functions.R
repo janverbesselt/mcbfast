@@ -22,3 +22,26 @@ bfastmonitor_rasterEngine <- function(rasterTS, start,...)
   dim(bfm_out) <- c(rasterTS_dims[1:2], 2)
   return(bfm_out)
 }
+
+bfmxt <- function(x) {
+  xt <- ts(x, start=c(2000,2), frequency=12)
+  bfm <- try(bfastmonitor(data=xt))
+  if (inherits(bfm,  "try-error")) {
+    out <- c(NA,NA,1)
+  } else {
+    out <- c(bfm$breakpoint, bfm$magnitude, 0)
+  }
+  return(out)
+}
+
+getbfm <- function(x)
+{
+  mask <- apply(x, 1, FUN = function(x) { sum(is.na(x)) / length(x) } )
+  i <- (mask < 0.1)
+  res <- matrix(NA, length(i), 3)
+  if(sum(i) > 0) {
+    i <- which(i)
+    res[i,] <- t(apply(x[i,], 1, bfmxt)) 
+  }
+  res
+}
