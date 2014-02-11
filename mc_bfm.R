@@ -32,20 +32,19 @@ if (FALSE) {
   c(bfm$breakpoint, bfm$magnitude)
 }
 
-## does not work yet --> as we need to build in dealing with NA's in the time series
-## Ben how have you tackled this?
+## we need to build in dealing with NA's in the time series
 
 if (FALSE) {
   # To run in parallel, uncomment:
   if (!file.exists(fn <- "data/test.grd")) {
-    # sfQuickInit(cpu=2)
+    sfQuickInit()
     # Now use rasterEngine to execute the function on the brick:
     bfm_out <- rasterEngine(rasterTS=evi, 
                       filename=c("data/test.grd"),
                       args=list(start=c(2010,1)), setMinMax = FALSE,
-                      fun=bfastmonitor_rasterEngine, debugmode=FALSE)
+                      fun=bfastmonitor_rasterEngine, debugmode=TRUE)
     # To stop parallel engine, uncomment:
-    # sfQuickStop()
+    sfQuickStop()
   }  else {
     bfm_out <- brick(fn)
   }
