@@ -31,7 +31,7 @@ if (FALSE) {
   tsevi <- ts(as.numeric(test[1,]), start=c(2000,2), frequency = 12)
   tsevi_qtr <- as.ts(aggregate(as.zoo(tsevi), as.yearqtr, mean, na.rm=TRUE))
   plot(tsevi_qtr)
-  length(tsevi)
+  length(tsevi_qtr)
   as.numeric(round(tsevi_qtr))
   class(tsevi_qtr)
 }
@@ -44,7 +44,7 @@ if (FALSE) {
     #sfQuickInit()
     # Now use rasterEngine to execute the function on the brick:
     agg_out <- rasterEngine(rasterTS=evi, args=list(),
-                      fun=zooaggregate_array, debugmode=TRUE)
+                      fun=zooaggregate_array, debugmode=FALSE)
     # To stop parallel engine, uncomment:
     # sfQuickStop()
   }  else {

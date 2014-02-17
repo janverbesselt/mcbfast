@@ -1,7 +1,7 @@
 # functions
 
 # Function to feed to rasterEngine:
-bfastmonitor_rasterEngine <- function(rasterTS, start)
+bfastmonitor_rasterEngine <- function(rasterTS, start, ...)
 {
   library("bfast")
   rasterTS_dims <- dim(rasterTS)
@@ -23,7 +23,7 @@ bfastmonitor_rasterEngine <- function(rasterTS, start)
 }
 
 # Function to feed to rasterEngine:
-zooaggregate_array <- function(rasterTS)
+zooaggregate_array <- function(rasterTS, ...)
 {
   # cpus - number of cores to run on (for parallel processing). Default is "max", which is half of the available cores.
   library("bfast")
@@ -40,7 +40,7 @@ zooaggregate_array <- function(rasterTS)
     return(as.numeric(round(out)))
   }
   # Coerce the output back to the correct size array:
-  dim(agg_out) <- c(rasterTS_dims[1:2], 143)
+  dim(agg_out) <- c(rasterTS_dims[1:2], 48)
   return(agg_out)
 }
 
