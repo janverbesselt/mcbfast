@@ -41,12 +41,12 @@ if (FALSE) {
 if (FALSE) {
   # To run in parallel, uncomment:
   if (!file.exists(fn <- "data/test.grd")) {
-    #sfQuickInit()
+    sfQuickInit()
     # Now use rasterEngine to execute the function on the brick:
     agg_out <- rasterEngine(rasterTS=evi, args=list(),
                       fun=zooaggregate_array, debugmode=FALSE)
     # To stop parallel engine, uncomment:
-    # sfQuickStop()
+    sfQuickStop()
   }  else {
     agg_out <- brick(fn)
   }
