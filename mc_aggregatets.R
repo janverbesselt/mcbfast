@@ -37,7 +37,7 @@ if (FALSE) {
 }
 
 ## we need to build in dealing with NA's in the time series
-
+## does not work yet
 if (FALSE) {
   # To run in parallel, uncomment:
   if (!file.exists(fn <- "data/test.grd")) {
