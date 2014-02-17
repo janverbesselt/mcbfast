@@ -1,0 +1,25 @@
+[general] 
+creator=R package 'raster' 
+created= 2014-02-17 09:38:06 
+[georeference] 
+nrows= 118 
+ncols= 222 
+xmin= 132.8 
+ymin= -34.8 
+xmax= 155 
+ymax= -23 
+projection= +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+[data] 
+datatype= INT2U 
+byteorder= little 
+nbands= 143 
+bandorder= BIL 
+minvalue= 0:1:1:1:43:28:1:0:12:3:1:7:28:6:14:94:28:5:79:84:15:1:11:8:23:18:5:3:118:22:15:1:17:4:106:29:21:32:30:24:59:64:24:0:0:14:26:0:2:52:6:35:107:26:26:3:64:51:54:45:29:13:36:48:83:75:100:8:11:9:19:62:29:1:6:43:43:16:20:57:82:79:2:72:36:15:4:33:12:29:7:64:31:0:5:28:93:23:117:22:57:43:51:90:77:25:61:4:6:28:3:69:6:12:3:39:75:38:127:2:25:7:26:94:6:10:22:19:63:11:2:1:12:32:12:25:58:3:55:44:22:25:81 
+maxvalue= 6454:6651:6327:6201:5431:5431:7100:6724:6428:6166:6108:5804:7034:6431:6431:5278:6691:6395:6395:6826:6681:6112:5876:6005:6319:6059:5960:6549:5049:6788:6788:5877:5773:4964:5685:5531:5510:6309:6192:6079:5696:5934:6963:7222:6824:6704:5864:6308:6308:6149:6691:5146:4956:6592:6344:6741:6830:6444:6074:6858:5923:5903:5143:5348:5015:6773:6773:6920:7080:6776:5880:6033:6540:6105:6344:5842:5790:6430:5398:5584:5552:5525:6365:6099:6623:6975:6975:5575:5537:6593:6748:6466:5698:6397:6409:6396:6333:6739:5583:5874:5827:6243:6746:6492:6242:6174:5924:6420:6146:6416:6416:5973:6579:5752:6372:6398:6538:5722:5826:5707:6198:6404:6011:6939:6693:6170:5953:7257:6724:6910:6328:6151:7077:6961:5493:6412:5516:6489:6915:6915:6766:6352:6231 
+nodatavalue= 65535 
+[legend] 
+legendtype=  
+values=  
+color=  
+[description] 
+layername= layer.1:layer.2:layer.3:layer.4:layer.5:layer.6:layer.7:layer.8:layer.9:layer.10:layer.11:layer.12:layer.13:layer.14:layer.15:layer.16:layer.17:layer.18:layer.19:layer.20:layer.21:layer.22:layer.23:layer.24:layer.25:layer.26:layer.27:layer.28:layer.29:layer.30:layer.31:layer.32:layer.33:layer.34:layer.35:layer.36:layer.37:layer.38:layer.39:layer.40:layer.41:layer.42:layer.43:layer.44:layer.45:layer.46:layer.47:layer.48:layer.49:layer.50:layer.51:layer.52:layer.53:layer.54:layer.55:layer.56:layer.57:layer.58:layer.59:layer.60:layer.61:layer.62:layer.63:layer.64:layer.65:layer.66:layer.67:layer.68:layer.69:layer.70:layer.71:layer.72:layer.73:layer.74:layer.75:layer.76:layer.77:layer.78:layer.79:layer.80:layer.81:layer.82:layer.83:layer.84:layer.85:layer.86:layer.87:layer.88:layer.89:layer.90:layer.91:layer.92:layer.93:layer.94:layer.95:layer.96:layer.97:layer.98:layer.99:layer.100:layer.101:layer.102:layer.103:layer.104:layer.105:layer.106:layer.107:layer.108:layer.109:layer.110:layer.111:layer.112:layer.113:layer.114:layer.115:layer.116:layer.117:layer.118:layer.119:layer.120:layer.121:layer.122:layer.123:layer.124:layer.125:layer.126:layer.127:layer.128:layer.129:layer.130:layer.131:layer.132:layer.133:layer.134:layer.135:layer.136:layer.137:layer.138:layer.139:layer.140:layer.141:layer.142:layer.143 
