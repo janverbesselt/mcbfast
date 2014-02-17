@@ -1,5 +1,5 @@
 ## February 2014
-## Authors: Jan, Jonathan
+## Authors: Jan Verbesselt, Jonathan Greenberg
 
 if (FALSE) {
   ## if needed for mac type = "source"
