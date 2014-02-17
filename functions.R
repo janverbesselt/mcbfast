@@ -23,8 +23,9 @@ bfastmonitor_rasterEngine <- function(rasterTS, start)
 }
 
 # Function to feed to rasterEngine:
-zooaggregate_rasterEngine <- function(rasterTS)
+zooaggregate_array <- function(rasterTS)
 {
+  # cpus - number of cores to run on (for parallel processing). Default is "max", which is half of the available cores.
   library("bfast")
   rasterTS_dims <- dim(rasterTS)
   npixels <- prod(dim(rasterTS)[1:2])
@@ -33,14 +34,14 @@ zooaggregate_rasterEngine <- function(rasterTS)
   # "Flatten" the input array to a 2-d matrix:
   dim(rasterTS) <- c(npixels,ndates)
   # Run bfastmonitor pixel-by-pixel:
-  bfm_out <- foreach(i=seq(npixels),.packages=c("bfast"),.combine=rbind) %do% {
-    bfts <- ts(rasterTS[i,], start=c(2000,2), freq=12)
-    tsqtr <- as.ts(aggregate(as.zoo(tsevi), as.yearqtr, mean, na.rm=TRUE))
-    return(as.numeric(tsqtr))
+  agg_out <- foreach(i=seq(npixels), .packages=c("bfast"), .combine=rbind) %do% {
+    zts <- ts(as.numeric(rasterTS[i,]), start=c(2000,2), freq=12)
+    out <- as.ts(aggregate(as.zoo(zts), as.yearqtr, mean, na.rm=TRUE))
+    return(as.numeric(round(out)))
   }
   # Coerce the output back to the correct size array:
-  dim(bfm_out) <- c(rasterTS_dims[1:2], 143)
-  return(bfm_out)
+  dim(agg_out) <- c(rasterTS_dims[1:2], 143)
+  return(agg_out)
 }
 
 

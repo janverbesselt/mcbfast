@@ -27,10 +27,12 @@ if (FALSE) {
   tsevi <- ts(as.numeric(evi[cellFromXY(evi, c(149.9479,-24.88017))]/10000), 
               start=c(2000,2), freq=12)
   plot(tsevi)
+  test <- getValues(evi, 10, 10)
+  tsevi <- ts(as.numeric(test[1,]), start=c(2000,2), frequency = 12)
   tsevi_qtr <- as.ts(aggregate(as.zoo(tsevi), as.yearqtr, mean, na.rm=TRUE))
   plot(tsevi_qtr)
   length(tsevi)
-  as.numeric(tsevi_qtr)
+  as.numeric(round(tsevi_qtr))
   class(tsevi_qtr)
 }
 
@@ -39,13 +41,12 @@ if (FALSE) {
 if (FALSE) {
   # To run in parallel, uncomment:
   if (!file.exists(fn <- "data/test.grd")) {
-    sfQuickInit()
+    #sfQuickInit()
     # Now use rasterEngine to execute the function on the brick:
-    agg_out <- rasterEngine(rasterTS=evi, 
-                      filename=c("data/test.grd"), setMinMax = FALSE,
-                      fun=zooaggregate_rasterEngine, debugmode=TRUE)
+    agg_out <- rasterEngine(rasterTS=evi, args=list(),
+                      fun=zooaggregate_array, debugmode=TRUE)
     # To stop parallel engine, uncomment:
-    sfQuickStop()
+    # sfQuickStop()
   }  else {
     agg_out <- brick(fn)
   }
