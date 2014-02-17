@@ -43,8 +43,9 @@ if (FALSE) {
   if (!file.exists(fn <- "data/test.grd")) {
     sfQuickInit()
     # Now use rasterEngine to execute the function on the brick:
-    agg_out <- rasterEngine(rasterTS=evi, args=list(),
-                      fun=zooaggregate_array, debugmode=FALSE)
+    agg_out <- rasterEngine(rasterTS=evi, args=list(), setMinMax = FALSE,
+                      fun=zooaggregate_array, debugmode=FALSE, 
+                      filename=c("data/test.grd"))
     # To stop parallel engine, uncomment:
     sfQuickStop()
   }  else {
