@@ -103,6 +103,7 @@ if (!file.exists(fn <- "data/test_calc.grd")) {
 
 # user  system elapsed 
 # 2.804   0.016   2.826 
+
 out
 out2
 plot(out)
