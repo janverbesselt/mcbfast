@@ -15,6 +15,7 @@ require("bfast")
 require("spatial.tools")
 sfQuickInit(cpus = 4)
 require("raster")
+
 ## load functions
 source("functions.R")
 
