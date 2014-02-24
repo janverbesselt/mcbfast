@@ -13,16 +13,10 @@ if (FALSE) {
 ## load packages
 require("bfast")
 require("spatial.tools")
+sfQuickInit(cpus = 4)
 require("raster")
 ## load functions
 source("functions.R")
-## percentage NA's
-f_pna <- function(x) { sum(is.na(x)) / length(x) }
-f_stats <- function(x) {
-  o1 <- round(f_pna(x)*100) # obtain integer values
-  o2 <- round(mean(x,na.rm=TRUE))
-  return(c(o1, o2))
-}
 
 ## load data
 if (!file.exists(fn <- "data/evi_au.grd")) {
@@ -31,7 +25,6 @@ if (!file.exists(fn <- "data/evi_au.grd")) {
 } else {
   evi <- brick(fn) ## monthly time series
 }
-
 
 ## test on one time series
 if (FALSE) {
@@ -43,33 +36,9 @@ if (FALSE) {
   f_stats(test[1,])
 }
 
-## define the rasterEngine helper function
-# Function to feed to rasterEngine:
-tsstat_rasterEngine <- function(rasterTS)  {
-  rasterTS_dims <- dim(rasterTS)
-  npixels <- prod(dim(rasterTS)[1:2])
-  ndates <- dim(rasterTS)[3]
-  # "Flatten" the input array to a 2-d matrix:
-  dim(rasterTS) <- c(npixels,ndates)
-  # Run bfastmonitor pixel-by-pixel:
-  out <- foreach(i=seq(npixels),.packages=c("zoo"),.combine=rbind) %do% {
-    f_pna <- function(x) { sum(is.na(x)) / length(x) }
-    f_stats <- function(x) {
-      o1 <- round(f_pna(x)*100) # obtain integer values
-      o2 <- round(mean(x,na.rm=TRUE))
-      return(c(o1, o2))
-    }
-    return(f_stats(rasterTS[i,]))
-  }
-  # Coerce the output back to the correct size array:
-  dim(out) <- c(rasterTS_dims[1:2], 2)
-  return(out)
-}
-
 ## rasterEngine - multicore processing
 fn <- "data/test"
 if (!file.exists(paste(fn,".grd",sep=""))) {
-  sfQuickInit(cpus = 2)
   # Now use rasterEngine to execute the function on the brick:
   v <- system.time(
   out <- rasterEngine(rasterTS=evi, setMinMax = TRUE,
@@ -84,7 +53,7 @@ if (!file.exists(paste(fn,".grd",sep=""))) {
 #   user  system elapsed 
 #   0.128   0.016   7.343
 # To stop parallel engine, uncomment:
-  sfQuickStop()
+
   
 }  else {
   out <- brick(paste(fn,".grd",sep=""))
@@ -109,5 +78,7 @@ out2
 plot(out)
 plot(out2)
 
+
+sfQuickStop()
 
 

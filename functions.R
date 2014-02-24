@@ -1,5 +1,36 @@
 # functions
 
+## percentage NA's
+f_pna <- function(x) { sum(is.na(x)) / length(x) }
+f_stats <- function(x) {
+  o1 <- round(f_pna(x)*100) # obtain integer values
+  o2 <- round(mean(x,na.rm=TRUE))
+  return(c(o1, o2))
+}
+
+## define the rasterEngine helper function
+# Function to feed to rasterEngine:
+tsstat_rasterEngine <- function(rasterTS)  {
+  rasterTS_dims <- dim(rasterTS)
+  npixels <- prod(dim(rasterTS)[1:2])
+  ndates <- dim(rasterTS)[3]
+  # "Flatten" the input array to a 2-d matrix:
+  dim(rasterTS) <- c(npixels,ndates)
+  # Run bfastmonitor pixel-by-pixel:
+  out <- foreach(i=seq(npixels),.packages=c("zoo"),.combine=rbind) %do% {
+    f_pna <- function(x) { sum(is.na(x)) / length(x) }
+    f_stats <- function(x) {
+      o1 <- round(f_pna(x)*100) # obtain integer values
+      o2 <- round(mean(x,na.rm=TRUE))
+      return(c(o1, o2))
+    }
+    return(f_stats(rasterTS[i,]))
+  }
+  # Coerce the output back to the correct size array:
+  dim(out) <- c(rasterTS_dims[1:2], 2)
+  return(out)
+}
+
 # Function to feed to rasterEngine:
 bfastmonitor_rasterEngine <- function(rasterTS, start, ...)
 {
