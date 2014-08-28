@@ -35,6 +35,7 @@ tsstat_rasterEngine <- function(rasterTS)  {
 bfastmonitor_rasterEngine <- function(rasterTS, start, ...)
 {
   library("bfast")
+  library("raster")
   rasterTS_dims <- dim(rasterTS)
   npixels <- prod(dim(rasterTS)[1:2])
   ndates <- dim(rasterTS)[3]
