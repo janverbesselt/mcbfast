@@ -7,9 +7,9 @@ if (FALSE) {
                    type = "source", repos="http://R-Forge.R-project.org")
 }
 
-require("bfast")
-require("spatial.tools")
-
+library("bfast")
+library("spatial.tools")
+library("raster")
 ## load functions
 source("functions.R")
 
